@@ -1,21 +1,47 @@
-#Basic calculator for finding approximate post-tax income
+# Basic calculator for finding approximate post-tax income
 
+# imports locale module for currency formatting
 import locale
 locale.setlocale(locale.LC_ALL, '' )
 
+# imports tkinter modules and related GUI modules
+from tkinter import *
+from tkinter import ttk
+import sv_ttk
+import darkdetect
+
+# initializes GUI using tkinter modules and Forest-ttk-theme from rdbende (https://github.com/rdbende/Forest-ttk-theme/)
+root = Tk()
+root.title('Income Calculator')
+sv_ttk.set_theme(darkdetect.theme())
+
+# Creates GUI interfrace
+mainframe = ttk.Frame(root, padding=" 3 3 12 12")
+mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
+root.columnconfigure(0, weight=1)
+root.rowconfigure(0, weight=1)
+
+# Creates entry widgets
+salary = StringVar()
+salary_entry = ttk.Entry(mainframe, width=7, textvariable=salary)
+salary_entry.grid(column=2, row=1, sticky=(W, E))
+
+root.mainloop()
+
+"""
 def main():
-        #Explains function of app, and then determines whether to calculate annual income from hourly wage or just calculate tax
+        # Explains function of app, and then determines whether to calculate annual income from hourly wage or just calculate tax
         print('This is a basic income calculator. \nChoose to calculate an hourly rate or annual salary and this program will estimate your gross and post-tax annual income.\n \n')
         hourly_income_type = input('Calculate annual income from an hourly rate? Type yes/no: ')
         hourly_income_type = hourly_income_type.casefold()
         if hourly_income_type == 'yes':
-                #Calculates income from hourly wage
+                # Calculates income from hourly wage
                 dollar_per_hour = input('Enter the dollar amount per hour you earn here: ')
                 gross_dollar_year = float(dollar_per_hour) * 40 * 52
                 gross_dollar_year = round(dollar_per_hour, 2)
                 print(f'\nGross annual income: {locale.currency(gross_dollar_year, grouping=True)}' )
         elif hourly_income_type == 'no':
-                #Only calculates taxes from annual salary
+                # Only calculates taxes from annual salary
                 gross_dollar_year = input('Enter your annual salary here: ')
                 gross_dollar_year = float(gross_dollar_year)
                 gross_dollar_year = round(gross_dollar_year, 2)
@@ -23,7 +49,7 @@ def main():
                 input('Sorry, that input was not valid. Press ENTER to try again.')
                 main()
 
-        #if/elif statements to determine tax rate based on gross_dollar_year calculated income
+        # if/elif statements to determine tax rate based on gross_dollar_year calculated income
         if gross_dollar_year in range(0, 9951):
                 tax_rate = 0.10
         elif gross_dollar_year in range(9951, 40526):
@@ -39,7 +65,7 @@ def main():
         else:
                 tax_rate = 0.37
 
-        #Actually performs the tax calculations based on gross_dollar_year and tax_rate values
+        # Actually performs the tax calculations based on gross_dollar_year and tax_rate values
         tax_per_year = gross_dollar_year * tax_rate
         tax_per_year = round(tax_per_year, 2)
         print(f'\nAnnual amount of taxes deducted: {locale.currency(tax_per_year, grouping=True)}')
@@ -47,7 +73,7 @@ def main():
         print(f'\nAnnual income (after taxes): {income_after_tax}')
         restart()
 
-#Allows the program to be restarted
+# Allows the program to be restarted
 def restart():
         restart = input('\nCalculate a new income? Please type yes/no: ')
         restart = restart.casefold()
@@ -62,3 +88,5 @@ def restart():
 
 if __name__ == '__main__':
         main()
+
+"""
